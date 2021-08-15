@@ -14,21 +14,31 @@ class CreateUserInfoTable extends Migration
     public function up()
     {
         Schema::create('user_infos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('user_id')->unsigned();
             
-            $table->unsignedInteger('age');
+            $table->integer('age');
             
-            $table->unsignedBigInteger('gender_id');
+            $table->integer('gender_id');
             
             
             $table->string('location');
             $table->string('bio');
-            $table->timestamp('last_active');
 
+            // Temporary, until we enable chatting. Pf.
+            $table->string('twitter');
+            $table->string('discord');
+            $table->string('tumblr');
+            $table->string('email');
+
+
+            $table->dateTime('last_active');
+
+        });
+        Schema::table('user_infos', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -39,6 +49,6 @@ class CreateUserInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_info');
+        Schema::dropIfExists('user_infos');
     }
 }

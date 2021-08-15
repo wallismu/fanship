@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/search', 'SearchController@show');
-
 Route::get('/users/{user}', 'ProfileController@show');
+Route::get('/users/edit', 'ProfileController@edit');
+Route::post('/users/edit', 'ProfileController@update');
+
+Route::get('/browse', 'BrowseController@show');

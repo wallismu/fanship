@@ -1,0 +1,51 @@
+html, body {
+  height: 100%;
+}
+.is-rounded {
+  border-radius: 9999999px;
+}
+.bg-red {
+  background-color: $fanshipRed;
+}
+.bg-orange {
+  background-color: $fanshipOrange;
+}
+.bg-blue {
+  background-color: $fanshipBlue;
+}
+.bg-teal {
+  background-color: $fanshipTeal;
+}
+.bg-green {
+  background-color: $fanshipGreen;
+}
+
+.is_primary {
+  background-color: $fanshipGreen;
+}
+
+.logo-container {
+    font-family: 'VT323';
+    font-size: 36px;
+    a {
+      color: $fanshipBlue;
+    }
+    & .logo-element {
+      display: inline-block;
+      transition: transform .2s;
+    }
+    & .logo-element:hover {
+      color: $fanshipRed;
+      transform: translate(0, -10%);
+      text-decoration: none;
+    }
+  }
+  
+
+.sticky-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    overflow:hidden;
+    padding-bottom: 1.5rem;
+}
