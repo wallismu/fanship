@@ -7,20 +7,22 @@ use App\User;
 use App\UserInfo;
 use App\Fandom;
 use App\FandomTag;
+use DB;
 
 class ProfileController extends Controller
 {
     public function show(User $user) {
-        //$userInfo = $user->getUserInfo();
-        // $userInfo = UserInfo::find(1)->user;
-        //dd($user->userInfo());
-        //dd(UserInfo::find(1)->user);
-
         $userProfileInfo = UserInfo::with('user')->find($user->id);
 
-        $userFandomTags = FandomTag::with('user')->find(3);
-        dd($userFandomTags);
+        $userFandomTags = User::find(1)->fandomTags;
+
+        $fandoms = DB::table('fandoms')
+                ->join('fandom_tags', 'fandoms.id', '=', 'fandom_tags.fandom_id')
+                ->select('fandoms.name')
+                ->where('fandom_tags.user_id', $user->id)
+                ->get()
+                ->all();
         
-        return view('profiles.show', compact(['user','userProfileInfo']));
+        return view('profiles.show', compact(['user','userProfileInfo','fandoms']));
     }
 }
